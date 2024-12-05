@@ -2,6 +2,7 @@ import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 type NavigationProp = NativeStackNavigationProp<{
   Home: undefined;
@@ -15,10 +16,10 @@ export default function BottomNavigationBar() {
     <View style={{flex: 0.09}}>
       <View style={styles.container}>
         <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-          <Text>Home</Text>
+          <Icon name="house" size={28} />
         </TouchableHighlight>
         <TouchableHighlight onPress={() => navigation.navigate('List')}>
-          <Text>List</Text>
+          <Icon name="table-list" size={28} />
         </TouchableHighlight>
       </View>
     </View>

@@ -1,3 +1,4 @@
+import Icon from 'react-native-vector-icons/FontAwesome6';
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
@@ -5,7 +6,7 @@ export default function Header() {
   return (
     <View>
       <View style={styles.headerContainer}>
-        <Text style={styles.title}>🔒</Text>
+        <Icon name="lock" size={28} color={'#F2D3CE'} />
         <Text style={styles.title}>KeyStone</Text>
       </View>
     </View>
