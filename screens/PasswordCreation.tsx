@@ -12,6 +12,7 @@ import React, {useState} from 'react';
 import {PasswordSchema} from '../schema/schema';
 import {Formik} from 'formik';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import realm, {addPassword} from '../db';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -55,6 +56,16 @@ export default function PasswordCreation({navigation}: {navigation: any}) {
     setUpperCase(true);
     setNumber(false);
     setSymbols(false);
+  };
+
+  const savePassword = () => {
+    console.log(password);
+    realm.write(() => {
+      realm.create('Password', {
+        password: password,
+        createdOn: new Date(),
+      });
+    });
   };
 
   return (
@@ -163,6 +174,14 @@ export default function PasswordCreation({navigation}: {navigation: any}) {
                       <Text style={styles.primaryBtnTxt}>Reset</Text>
                     </TouchableOpacity>
                   </View>
+                  <View style={styles.secondaryButtonContainer}>
+                    <TouchableOpacity
+                      onPress={() => savePassword()}
+                      style={styles.secondaryBtn}
+                      disabled={!touched.passwordLength}>
+                      <Text style={styles.primaryBtnTxt}>Save Password</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </>
             )}
@@ -241,6 +260,20 @@ const styles = StyleSheet.create({
   primaryBtnTxt: {
     textAlign: 'center',
     fontWeight: '400',
+  },
+  secondaryButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+    marginTop: 9,
+  },
+  secondaryBtn: {
+    backgroundColor: '#B0E0E6',
+    width: '100%',
+    padding: 20,
+    borderRadius: 35,
   },
   generatedPasswordContainerMain: {
     padding: 18,

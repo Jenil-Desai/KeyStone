@@ -1,10 +1,27 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {getPasswords} from '../db';
+import PasswordItem from '../components/PasswordItem';
 
 export default function PasswordList({navigation}: {navigation: any}) {
+  const [passwords, setPasswords] = useState<any>([]);
+
+  useEffect(() => {
+    const pass = getPasswords();
+    setPasswords(pass);
+  }, []);
+
   return (
     <View>
-      <Text>PasswordList</Text>
+      {passwords.map(
+        (password: {password: string; createdOn: string}, idx: number) => (
+          <PasswordItem
+            key={idx}
+            password={password.password}
+            createdAt={password.createdOn}
+          />
+        ),
+      )}
     </View>
   );
 }
