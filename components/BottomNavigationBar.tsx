@@ -9,7 +9,15 @@ type NavigationProp = NativeStackNavigationProp<{
   List: undefined;
 }>;
 
-export default function BottomNavigationBar() {
+interface BottomNavigationBarProps {
+  currentScreenName: string;
+}
+
+export default function BottomNavigationBar({
+  currentScreenName,
+}: BottomNavigationBarProps) {
+  if (currentScreenName === 'Welcome') return null;
+
   const navigation = useNavigation<NavigationProp>();
 
   return (

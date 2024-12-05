@@ -1,8 +1,12 @@
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
 
-export default function Header() {
+interface HeaderProps {
+  currentScreenName: string;
+}
+
+export default function Header({currentScreenName}: HeaderProps) {
+  if (currentScreenName === 'Welcome') return null;
   return (
     <View>
       <View style={styles.headerContainer}>
