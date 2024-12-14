@@ -160,9 +160,7 @@ export default function PasswordCreation({navigation}: {navigation: any}) {
                       onPress={() => handleSubmit()}
                       style={styles.primaryBtn}
                       disabled={!isValid}>
-                      <Text style={styles.primaryBtnTxt}>
-                        Generate Password
-                      </Text>
+                      <Text style={styles.primaryBtnTxt}>Generate</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={() => {
@@ -289,7 +287,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   generatedPasswordTxt: {
-    fontSize: 20,
+    fontSize: 15,
     color: '#030303',
+    textAlign: 'center',
   },
 });
